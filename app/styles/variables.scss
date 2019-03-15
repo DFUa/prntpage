@@ -10,6 +10,7 @@ $gradient-green: #09a599;
 $gradient-blue: #1684a7;
 
 $gradient-bg: linear-gradient(-126deg, $gradient-blue 0%, $gradient-green 100%);
+$gradient-bg-hover: linear-gradient(-126deg, $gradient-green 0%, $gradient-blue 100%);
 
 $main-font: "Montserrat";
 $secondary-font: "Roboto";

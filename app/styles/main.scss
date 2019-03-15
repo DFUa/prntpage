@@ -209,7 +209,8 @@ header {
         text-decoration: none;
         font-weight: 700;
         transition: all .3s;
-        &:hover{
+
+        &:hover {
           color: $black;
         }
       }
@@ -379,6 +380,10 @@ header {
         display: block;
       }
     }
+
+    &.profile-page-content-nav {
+      animation-delay: .65s;
+    }
   }
 
   .page-content-view {
@@ -458,7 +463,9 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
 
+.messager {
   .message-date {
     position: relative;
     height: 1px;
@@ -524,7 +531,6 @@ header {
       }
     }
   }
-
 }
 
 .message-text {
@@ -537,15 +543,34 @@ header {
   line-height: 1.6;
   color: $black;
   padding: 13px 20px;
+  position: relative;
+
+  .message-text-btns {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    z-index: 1;
+
+    a {
+      text-decoration: none;
+      font-size: 12px;
+      color: #395180;
+    }
+  }
 
   &.my-message {
     background-color: #c7e5f0;
     border-color: #b8d9e6;
     border-top-right-radius: 0;
     border-top-left-radius: 7px;
+
+    .message-text-btns {
+      right: 0;
+      left: inherit;
+    }
   }
 
-  &+&.message-text {
+  &+& {
     margin-top: 10px;
   }
 }
@@ -606,12 +631,46 @@ footer {
   padding: 20px 0;
 }
 
+.btn {
+  background: $gradient-bg;
+  border: none;
+  padding: 12px 37px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: $main-font;
+  border-radius: 5px;
+  transition: all .5s;
+  position: relative;
+  z-index: 1;
+  outline: none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    background: $gradient-bg-hover;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 5px;
+    transition: all .75s;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
 .table {
   width: 100%;
   border-collapse: separate;
-  border-spacing:0 10px;
+  border-spacing: 0 10px;
 
-  tbody{
+  tbody {
     background-color: #f9f9f9;
   }
 
@@ -630,19 +689,21 @@ footer {
       font-weight: 700;
     }
 
-    td{
+    td {
       font-size: 14px;
     }
   }
 }
 
-.pagination{
+.pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  li{
+
+  li {
     margin-right: 5px;
-    a{
+
+    a {
       text-decoration: none;
       color: $dark-blue;
       font-weight: 700;
@@ -655,16 +716,299 @@ footer {
       min-width: 35px;
       transition: all .3s;
     }
+
     &.active a,
-    &:hover a{
-        background-color: $green;
-        color: #fff;
+    &:hover a {
+      background-color: $green;
+      color: #fff;
     }
-    &:first-child{
+
+    &:first-child {
       margin-right: 25px;
     }
-    &:last-child{
+
+    &:last-child {
       margin-left: 25px;
     }
+  }
+}
+
+.cover-image {
+  background: transparent url('../images/cover-img.png') center center no-repeat;
+  background-size: contain;
+  height: 250px;
+  width: 100%;
+}
+
+.profile-page-content-nav {
+  .profile-img-wrap {
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+    margin: -85px auto 15px;
+    position: relative;
+
+    img {
+      display: block;
+      width: 100%;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+
+    svg {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+      fill: $green;
+    }
+  }
+
+  .profile-name {
+    font-size: 23px;
+    font-weight: 700;
+    color: $black;
+    margin-bottom: 10px;
+  }
+
+  .profile-rate {
+    font-weight: 700;
+    color: $black;
+    margin-bottom: 25px;
+  }
+}
+
+.page-content-profile-feed {
+  animation-delay: .65s;
+  padding-top: 25px;
+
+  .page-content-profile-info {
+    font-size: 14px;
+    color: $black;
+    margin-bottom: 25px;
+  }
+
+  .post-form {
+    border: 20px solid #e0e0e0;
+    border-radius: 7px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    textarea {
+      max-width: 680px;
+      width: 100%;
+      resize: none;
+      border: none;
+      font-family: $main-font;
+      font-size: 14px;
+      padding: 20px;
+      height: 60px;
+      overflow: hidden;
+      outline: none;
+      border-radius: 7px;
+    }
+
+    .post-form-btn {
+      svg {
+        fill: #989898;
+        display: block;
+        margin-right: 10px;
+        transition: all .3s;
+      }
+
+      &:first-of-type {
+        margin-left: 10px;
+      }
+
+      &:last-of-type {
+        margin-left: auto;
+      }
+
+      &:hover svg {
+        fill: url(#PSgrad_0);
+      }
+    }
+  }
+}
+
+.page-content-profile-post {
+  border: 1px solid $grey-border;
+  border-radius: 10px;
+
+  .page-content-profile-post-author {
+    border-bottom: 1px solid $grey-border;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+
+    .page-content-profile-post-author-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+
+      img {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+    }
+
+    .page-content-profile-post-author-name {
+      font-weight: 700;
+      color: $black;
+      margin-right: 10px;
+    }
+
+    .page-content-profile-post-author-time {
+      font-size: 12px;
+      color: #b5b5b5;
+    }
+
+    .page-content-profile-post-dropdown-btn {
+      margin-left: auto;
+      align-self: flex-start;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .page-content-profile-post-content {
+    padding: 15px 20px;
+
+    .page-content-profile-post-img {
+      margin-bottom: 20px;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .page-content-profile-post-controls {
+      padding-bottom: 20px;
+
+      .page-content-profile-post-btn {
+        border: none;
+        background-color: transparent;
+        font-size: 14px;
+        font-family: $main-font;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .5s;
+
+        svg {
+          margin-right: 10px;
+        }
+
+        &:last-of-type {
+          margin-left: 30px;
+        }
+
+        &:hover {
+          color: #395180;
+
+          svg {
+            fill: #395180;
+          }
+        }
+      }
+
+      .counter {
+        margin-left: auto;
+        font-size: 14px;
+        font-weight: 600;
+
+        span {
+          display: inline-block;
+
+          &:last-of-type {
+            margin-left: 30px;
+          }
+        }
+      }
+    }
+
+    .messager {
+      margin: 0 -20px 20px;
+      padding: 0 20px 20px;
+      border-top: 1px solid $grey-border;
+
+      .message-author .message-author-name {
+        margin-bottom: 0;
+      }
+    }
+
+    .page-content-profile-post-write-message {
+      margin: 0 -20px;
+      padding: 20px 20px 0;
+      border-top: 1px solid $grey-border;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      textarea {
+        width: 100%;
+        resize: none;
+        border: none;
+        font-family: $main-font;
+        font-size: 14px;
+        padding: 20px;
+        padding-right: 150px;
+        height: 60px;
+        overflow: hidden;
+        outline: none;
+        border: 1px solid $grey-border;
+        background-color: #fcfcfc;
+        border-radius: 7px;
+      }
+
+      .post-form-btns {
+        position: absolute;
+        right: 20px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+
+        .post-form-btn {
+          svg {
+            fill: #989898;
+            display: block;
+            margin-right: 10px;
+            transition: all .3s;
+          }
+
+          &:first-of-type {
+            margin-left: 10px;
+          }
+
+          &:last-of-type {
+            margin-left: auto;
+          }
+
+          &:hover svg {
+            fill: url(#PSgrad_0);
+          }
+        }
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: $black;
+      margin-bottom: 10px;
+    }
+  }
+
+  & + & {
+    margin-top: 40px;
   }
 }
